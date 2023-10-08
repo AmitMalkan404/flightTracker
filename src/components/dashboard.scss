@@ -1,0 +1,39 @@
+.container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    top: 0; right: 0; bottom: 0; left: 0;
+    border: 2px solid blue;
+  }
+.input-and-list-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 30%;
+    top: 0; right: 0; bottom: 0; left: 0;
+}
+.map-and-flight-data-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 70%;
+    top: 0; right: 0; bottom: 0; left: 0;
+}
+
+.map-container { 
+    border: 5px solid black;
+}
+
+.flight-data-input-container { 
+    border: 5px solid black;
+ }
+
+.flights-list-container { 
+    border: 5px solid black;
+ }
+
+.flight-data-container { 
+    border: 5px solid black;
+ }
