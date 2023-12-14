@@ -10,6 +10,8 @@ interface FileUploadProps {
 const FileUpload: React.FC<FileUploadProps> = ({ }) => {
   const [selectedFile, setSelectedFile] = useState<File | any>(null);
   const fileContentRef = useRef<string | any>(null);
+  const inputFileRef = useRef(null);
+
 
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -24,7 +26,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ }) => {
                     fileContentRef.current = content;
                     const response = await uploadFlightData(content);
                     alert('Flight added successfully ✈️✔️');
-                  } catch (error) {
+                  } catch (error: any) {
                     if (error instanceof SyntaxError){
                         console.error('Error parsing JSON:', error);
                         alert('Error parsing JSON ❌ \n Please verify the data again');
@@ -35,6 +37,11 @@ const FileUpload: React.FC<FileUploadProps> = ({ }) => {
                     }
                     fileContentRef.current = null;
                     setSelectedFile(null);
+                    if (inputFileRef.current) {
+                      inputFileRef.current.value = "";
+                      inputFileRef.current.type = "text";
+                      inputFileRef.current.type = "file";
+                  }
                   }
             };
             fileReader.readAsText(file);
@@ -48,7 +55,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ }) => {
 
   return (
     <div>
-      <input type="file" accept='application/JSON' onChange={handleFileChange} />
+      <input type="file" accept='application/JSON' onChange={handleFileChange} ref={inputFileRef} />
       {selectedFile && <p>Selected file: {selectedFile.name}</p>}
     </div>
   );

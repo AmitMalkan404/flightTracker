@@ -20,3 +20,15 @@ export const getAllFlights = async () => {
     }
 };
 
+export const deleteFlight = async (data: any) => {
+  try {
+    const dateToSend = {
+      "flightId":data
+    }
+    const response = await axios.post(`${BASE_URL}/delete-flight`, dateToSend);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+

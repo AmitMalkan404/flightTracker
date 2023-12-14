@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { flightsList, saveAllFlights } from '../flightsUtils';
 import { FlightDataInterface } from '../interfaces/flightDataInterface';
+import { deleteFlight } from '../services/ApiService';
 
 function FlightTable({ }) {
-  const [flights, setFlights] = useState([]);
+
 
 
   useEffect(() => {
@@ -17,6 +18,13 @@ function FlightTable({ }) {
   
       fetchFlights();
   }, []);
+
+  useEffect (() => {
+  },[flightsList])
+
+  function handleDeleteBtnClick(flightId:string) {
+    deleteFlight(flightId)
+  }
 
   return (
     <table>
@@ -37,6 +45,15 @@ function FlightTable({ }) {
             <td>{flight.passengers}</td>
             <td>{new Date(flight.initial_location.date_time).toLocaleDateString()}</td>
             <td>{new Date(flight.initial_location.date_time).toLocaleTimeString()}</td>
+            <td>
+              <button onClick={ () =>{
+                handleDeleteBtnClick(flight._id)
+                }
+              }
+              >
+              🗑
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>
