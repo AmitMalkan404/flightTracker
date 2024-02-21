@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { flightsList, removeObjectWithId, setFlightList } from '../flightsUtils';
 
 const BASE_URL = 'http://localhost:5555'; // Replace with your server URL
 
@@ -22,13 +23,21 @@ export const getAllFlights = async () => {
 
 export const deleteFlight = async (data: any) => {
   try {
-    const dateToSend = {
+    const dataToSend = {
       "flightId":data
     }
-    const response = await axios.post(`${BASE_URL}/delete-flight`, dateToSend);
+    const response = await axios.post(`${BASE_URL}/delete-flight`, dataToSend);
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
+export const getLocationDetailsByLonLat = async (longitude:number, latitude:number) => {
+    try {
+    const response = await axios.get(`https://geocode.maps.co/reverse?lat=${latitude}&lon=${longitude}`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}

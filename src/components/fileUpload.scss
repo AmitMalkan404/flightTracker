@@ -1,0 +1,12 @@
+.upload-file-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    height: 100%;
+}
+
+.input-file {
+    display: block;
+    margin : auto;
+    height: 50%
+}
